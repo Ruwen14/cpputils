@@ -18,7 +18,7 @@ namespace cpputils
 {
 	inline void str_lowercase(std::string& sample)
 	{
-		std::transform(sample.begin(), sample.end(), sample.begin(), ::tolower);
+		std::transform(sample.begin(), sample.end(), sample.begin(), [](char c) {return static_cast<char>(std::tolower(c)); });
 	}
 
 	inline void str_lowercase(const std::string& src, std::string& dst)
@@ -29,7 +29,7 @@ namespace cpputils
 
 	inline void str_uppercase(std::string& sample)
 	{
-		std::transform(sample.begin(), sample.end(), sample.begin(), ::toupper);
+		std::transform(sample.begin(), sample.end(), sample.begin(), [](char c) {return static_cast<char>(std::toupper(c)); });
 	}
 
 	inline void str_uppercase(const std::string& src, std::string& dst)
