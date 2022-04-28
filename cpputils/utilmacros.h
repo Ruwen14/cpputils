@@ -13,4 +13,11 @@
     /** Sets the name value for the object. @param value The value of which to set name to. */ \
     inline void Set##method(type value) { name = value; }
 
-
+#define ADD_ENUM_OPERATORS(enumtype) \
+inline enumtype operator~(enumtype rhs) noexcept {return static_cast<enumtype>(~static_cast<std::underlying_type_t<enumtype>>(rhs));} \
+inline enumtype operator|(enumtype lhs, enumtype rhs) noexcept { return static_cast<enumtype>(static_cast<std::underlying_type_t<enumtype>>(lhs) | static_cast<std::underlying_type_t<enumtype>>(rhs));} \
+inline enumtype operator&(enumtype lhs, enumtype rhs) noexcept { return static_cast<enumtype>(static_cast<std::underlying_type_t<enumtype>>(lhs) & static_cast<std::underlying_type_t<enumtype>>(rhs));} \
+inline enumtype operator^(enumtype lhs, enumtype rhs) noexcept { return static_cast<enumtype>(static_cast<std::underlying_type_t<enumtype>>(lhs) ^ static_cast<std::underlying_type_t<enumtype>>(rhs));} \
+inline enumtype& operator|=(enumtype& lhs, enumtype rhs) noexcept { return lhs = (lhs | rhs);} \
+inline enumtype& operator&=(enumtype& lhs, enumtype rhs) noexcept { return lhs = (lhs & rhs);} \
+inline enumtype& operator^=(enumtype& lhs, enumtype rhs) noexcept { return lhs = (lhs ^ rhs);} \
